@@ -13,7 +13,9 @@
 ## Как запустить?
 
 1 Клонировать репозиторий
-```bash
+
+```
 git clone https://github.com/yeat2007/todo-list-giper.fm.git
+```
 
 2 Открыть index.html в браузере (Open with Live server)
