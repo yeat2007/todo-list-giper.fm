@@ -21,6 +21,7 @@ function addTask(){
         tasks.push({ text, done: false});
         saveTasks();
         renderTasks();
+        input.value = "";
     }
 
 }
@@ -32,12 +33,6 @@ function deleteTask(index) {
 }
 
 
-function markTask(){
-    tasks[index].done = !tasks[index].done;
-    saveTasks();
-    renderTasks();
-
-}
 
 function renderTasks(){
     const list = document.getElementById("task-list");
@@ -45,10 +40,16 @@ function renderTasks(){
     tasks.forEach((task, index) => {
         const li = document.createElement("li");
         
-        const checkbox = document.createElement("li");
+        const checkbox = document.createElement("input");
         checkbox.type = "checkbox";
         checkbox.checked = task.done;
-        checkbox.addEventListener("изменить", () => markTask(index));
+        
+        checkbox.addEventListener("change", () => {
+            tasks[index].done = checkbox.checked;
+            saveTasks();
+            renderTasks();
+        
+        });
 
         const span = document.createElement("span");
         span.textContent = task.text;
@@ -62,10 +63,15 @@ function renderTasks(){
         li.appendChild(span)
         li.appendChild(deleteButton)
         list.appendChild(li)
-    });
+});
 }
-
 loadTasks();
+
+
+
+
+
+
 
 
 
